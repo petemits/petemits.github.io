@@ -477,19 +477,20 @@ footer .socials a:hover{color:var(--accent); text-shadow:0 0 10px rgba(56,189,24
     </div>
 
     <div class="form-card scroll-anim anim-zoom">
-<form action="mailto:mitspete2020@gmail.com?subject=New Portfolio Contact" method="post" enctype="text/plain">
-  <div class="grid2">
-    <label class="field">Full name <em>*</em><input type="text" name="Name" required></label>
-    <label class="field">Occupation / title <em>*</em><input type="text" name="Occupation" required></label>
-    <label class="field">Company <em>*</em><input type="text" name="Company" required></label>
-    <label class="field">Company website<input type="url" name="Website" placeholder="https://"></label>
-    <label class="field">Email address <em>*</em><input type="email" name="Email" required></label>
-    <label class="field">Phone number<input type="tel" name="Phone" placeholder="+1 ___ ___ ____"></label>
-    <label class="field span-2">Message<textarea name="Message" rows="4" required></textarea></label>
-  </div>
-  <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:18px">Send Email →</button>
-  <p class="privacy" style="text-align:center">This will open your default email app to send the message.</p>
-</form>
+      <!-- Simple Mailto Form -->
+      <form action="mailto:mitspete2020@gmail.com?subject=New Portfolio Contact" method="post" enctype="text/plain">
+        <div class="grid2">
+          <label class="field">Full name <em>*</em><input type="text" name="Name" required></label>
+          <label class="field">Occupation / title <em>*</em><input type="text" name="Occupation" required></label>
+          <label class="field">Company <em>*</em><input type="text" name="Company" required></label>
+          <label class="field">Company website<input type="url" name="Website" placeholder="https://"></label>
+          <label class="field">Email address <em>*</em><input type="email" name="Email" required></label>
+          <label class="field">Phone number<input type="tel" name="Phone" placeholder="+1 ___ ___ ____"></label>
+          <label class="field span-2">Message<textarea name="Message" rows="4" required></textarea></label>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:18px">Send Email →</button>
+        <p class="privacy" style="text-align:center">This will open your default email app to send the message.</p>
+      </form>
     </div>
   </div>
 </section>
@@ -574,6 +575,8 @@ document.querySelectorAll('.scroll-anim').forEach(function(el){io.observe(el)});
 document.getElementById('today').textContent=new Date()
   .toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* NO AUTO-ROTATION SCRIPT - THE VIDEO WILL LOOP IN PLACE */
 </script>
 </body>
 </html>
