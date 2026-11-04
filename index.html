@@ -477,33 +477,19 @@ footer .socials a:hover{color:var(--accent); text-shadow:0 0 10px rgba(56,189,24
     </div>
 
     <div class="form-card scroll-anim anim-zoom">
-      <form action="https://formsubmit.co/mitspete2020@gmail.com" method="POST">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New cover-letter contact from your portfolio">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://petemits.github.io/resume/thanks.html">
-
-        <div class="grid2">
-          <label class="field">Full name <em>*</em><input type="text" name="name" required autocomplete="name"></label>
-          <label class="field">Occupation / title <em>*</em><input type="text" name="occupation" required></label>
-          <label class="field">Company <em>*</em><input type="text" name="company" required autocomplete="organization"></label>
-          <label class="field">Company website<input type="url" name="website" placeholder="https://"></label>
-          <label class="field">Email address <em>*</em><input type="email" name="email" required autocomplete="email"></label>
-          <label class="field">Preferred contact email<input type="email" name="preferred_email" placeholder="If different from above"></label>
-          <label class="field">Phone number<input type="tel" name="phone" autocomplete="tel" placeholder="+1 ___ ___ ____"></label>
-          <label class="field">Address<input type="text" name="address" autocomplete="street-address"></label>
-          <label class="field span-2">Message<textarea name="message" rows="4"></textarea></label>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" name="consent" required>
-          <span>I agree to be contacted about this opportunity.</span>
-        </label>
-
-        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:18px">Send details &amp; book a call →</button>
-        <p class="privacy" style="text-align:center">Your details are used only to contact you about this opportunity and are not shared.</p>
-      </form>
+<form action="mailto:mitspete2020@gmail.com?subject=New Portfolio Contact" method="post" enctype="text/plain">
+  <div class="grid2">
+    <label class="field">Full name <em>*</em><input type="text" name="Name" required></label>
+    <label class="field">Occupation / title <em>*</em><input type="text" name="Occupation" required></label>
+    <label class="field">Company <em>*</em><input type="text" name="Company" required></label>
+    <label class="field">Company website<input type="url" name="Website" placeholder="https://"></label>
+    <label class="field">Email address <em>*</em><input type="email" name="Email" required></label>
+    <label class="field">Phone number<input type="tel" name="Phone" placeholder="+1 ___ ___ ____"></label>
+    <label class="field span-2">Message<textarea name="Message" rows="4" required></textarea></label>
+  </div>
+  <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:18px">Send Email →</button>
+  <p class="privacy" style="text-align:center">This will open your default email app to send the message.</p>
+</form>
     </div>
   </div>
 </section>
