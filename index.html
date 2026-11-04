@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amit Puri — AI Sales, Automation &amp; Client Services</title>
+<meta name="description" content="Portfolio of Amit Puri — AI sales, consultation, client services, data annotation and automation.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Courier+Prime:wght@400;700&family=Inter:wght@400;500&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Outfit:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&family=Quicksand:wght@500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05080f; --bg-2:#0a101c;
+  --ink:#ffffff; --muted:#b0c0d6; --line:rgba(255,255,255,.15);
+  --card:rgba(11,18,32,0.7);
+  --accent:#38bdf8; --accent-2:#818cf8; --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.65;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* --- AUDIO TOGGLE BUTTON --- */
+.audio-toggle {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: rgba(11,18,32,0.8); border: 1px solid var(--accent);
+  color: var(--accent); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; backdrop-filter: blur(8px); transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(56,189,248,0.4);
+}
+.audio-toggle:hover { background: var(--accent); color: #04121f; transform: scale(1.1); box-shadow: 0 0 25px rgba(56,189,248,0.8); }
+.audio-toggle svg { width: 24px; height: 24px; fill: currentColor; }
+
+/* --- FULL SCREEN BACKGROUND VIDEO --- */
+.bg-media{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg)}
+.bg-media video{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position: center 15%;
+  opacity:0.85;
+  filter:brightness(1.1) saturate(1.2) contrast(1.05)
+}
+.bg-glow{position:fixed;inset:0;z-index:-2;pointer-events:none;
+background:radial-gradient(1000px 600px at 15% 8%,rgba(56,189,248,.25),transparent 60%),
+radial-gradient(900px 600px at 88% 78%,rgba(129,140,248,.25),transparent 62%)}
+.bg-overlay{position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:linear-gradient(180deg,rgba(5,8,15,.3) 0%,rgba(5,8,15,.8) 50%,var(--bg) 95%)}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;
+justify-content:space-between;padding:18px 28px;border-bottom:1px solid transparent;
+transition:all .35s}
+.nav.scrolled{background:rgba(5,8,15,.85);backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:14px 28px}
+.brand{font-weight:800;letter-spacing:2.6px;font-size:14px;display:flex;align-items:center;gap:10px}
+.brand i{width:8px;height:8px;border-radius:50%;background:var(--accent);
+box-shadow:0 0 15px var(--accent);display:block}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:13px;letter-spacing:.4px}
+.nav ul a{color:var(--muted);transition:color .2s;font-weight:600}
+.nav ul a:hover{color:var(--accent); text-shadow: 0 0 10px rgba(56,189,248,0.5);}
+@media(max-width:760px){.nav ul{display:none}}
+
+/* --- HERO --- */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;
+text-align:center;padding:140px 24px 100px;position:relative}
+.hero-inner{max-width:920px; position:relative; z-index:2; padding: 40px;}
+
+.badge{display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:2.2px;
+text-transform:uppercase;color:#bae6fd;padding:8px 18px;border-radius:999px;margin-bottom:28px;
+border:1px solid rgba(56,189,248,.5);background:rgba(56,189,248,.15);backdrop-filter:blur(8px);
+font-weight:600; text-shadow: 0 0 10px rgba(56,189,248,0.5); box-shadow: 0 0 15px rgba(56,189,248,0.2)}
+.badge .pulse{width:7px;height:7px;border-radius:50%;background:#34d399;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,.8)}70%{box-shadow:0 0 0 12px rgba(52,211,153,0)}
+100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+
+.hero h1{font-size:clamp(40px,9vw,96px);font-weight:800;letter-spacing:-3px;line-height:1;
+margin-bottom:18px;color:#ffffff;text-shadow:0 4px 30px rgba(0,0,0,0.9), 0 0 60px rgba(56,189,248,0.6)}
+
+.hero .role{font-size:clamp(12px,2.5vw,16px);letter-spacing:4px;text-transform:uppercase;
+color:#38bdf8;font-weight:700;margin-bottom:28px;text-shadow:0 2px 15px rgba(56,189,248,0.8)}
+
+.tagline{font-size:clamp(16px,3.3vw,22px);color:#ffffff;max-width:660px;margin:0 auto 42px;
+min-height:2.7em;transition:opacity .4s ease,transform .4s ease;font-weight:500;
+text-shadow:0 2px 15px rgba(0,0,0,0.9)}
+.tagline.fade{opacity:0;transform:translateY(8px)}
+
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:12px;
+font-size:14.5px;font-weight:700;letter-spacing:.4px;border:0;cursor:pointer;font-family:inherit;
+transition:all .2s ease}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#04121f;
+box-shadow:0 0 25px rgba(56,189,248,.5)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(56,189,248,.8);filter:brightness(1.1)}
+.btn-ghost{background:rgba(5,8,15,.6);color:var(--ink);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:rgba(5,8,15,.9);transform:translateY(-3px);box-shadow:0 0 20px rgba(255,255,255,0.2)}
+
+/* HERO CONTACT STRIP */
+.hero-contact {
+  display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px;
+  margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);
+}
+.hero-contact a {
+  display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px;
+  background: rgba(5,8,15,0.6); border: 1px solid rgba(255,255,255,0.2);
+  color: #e2e8f0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  transition: all 0.3s ease; backdrop-filter: blur(8px);
+}
+.hero-contact a:hover {
+  background: rgba(56,189,248,0.2); border-color: var(--accent); color: #fff;
+  transform: translateY(-3px); box-shadow: 0 0 20px rgba(56,189,248,0.4);
+}
+.hero-contact svg { width: 16px; height: 16px; fill: currentColor; }
+
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#fff;
+font-size:10.5px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;
+align-items:center;gap:10px;animation:bob 2.2s ease-in-out infinite;opacity:0.9;text-shadow:0 2px 10px rgba(0,0,0,0.9)}
+.scroll-hint span{width:1px;height:36px;background:linear-gradient(180deg,var(--accent),transparent)}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+
+/* shell */
+section{padding:110px 24px;position:relative}
+section:nth-of-type(even){background:rgba(10,16,28,0.85)}
+.wrap{max-width:1400px;margin:0 auto}
+.sec-head{margin-bottom:56px;max-width:760px}
+.sec-kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);
+font-weight:700;margin-bottom:14px;text-shadow:0 0 10px rgba(56,189,248,0.5)}
+.sec-title{font-size:clamp(28px,5vw,54px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,0.5);}
+.sec-sub{color:#e2e8f0;font-size:clamp(16px, 2vw, 18px);max-width:640px;line-height:1.7}
+
+/* --- GSAP-LIKE ANIMATION ENGINE (Two-Way) --- */
+.scroll-anim { opacity: 0; will-change: transform, opacity; }
+.is-visible { animation-duration: 1.2s; animation-fill-mode: both; }
+
+.is-visible.anim-top { animation-name: animTop; animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); }
+@keyframes animTop { 0% { opacity: 0; transform: translateY(-80px); } 100% { opacity: 1; transform: translateY(0); } }
+
+.is-visible.anim-left { animation-name: animLeft; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes animLeft { 0% { opacity: 0; transform: translateX(-100px) rotate(-3deg); } 100% { opacity: 1; transform: translateX(0) rotate(0); } }
+
+.is-visible.anim-right { animation-name: animRight; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes animRight { 0% { opacity: 0; transform: translateX(100px); } 100% { opacity: 1; transform: translateX(0); } }
+
+.is-visible.anim-bottom { animation-name: animBottom; animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes animBottom { 0% { opacity: 0; transform: translateY(80px) scale(0.9); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+.is-visible.anim-flip { animation-name: animFlip; animation-timing-function: ease-out; transform-origin: top center; }
+@keyframes animFlip { 0% { opacity: 0; transform: perspective(800px) rotateX(90deg); } 100% { opacity: 1; transform: perspective(800px) rotateX(0deg); } }
+
+.is-visible.anim-spin { animation-name: animSpin; animation-timing-function: ease-out; }
+@keyframes animSpin { 0% { opacity: 0; transform: scale(0.3) rotate(-180deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+
+.is-visible.anim-zoom { animation-name: animZoom; animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1); }
+@keyframes animZoom { 0% { opacity: 0; transform: scale(1.5); filter: blur(10px); } 100% { opacity: 1; transform: scale(1); filter: blur(0); } }
+
+.is-visible.anim-swing { animation-name: animSwing; animation-timing-function: ease-out; transform-origin: top left; }
+@keyframes animSwing { 0% { opacity: 0; transform: rotateZ(-10deg) translateX(-50px); } 100% { opacity: 1; transform: rotateZ(0deg) translateX(0); } }
+
+/* showcase */
+.stage{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.2);
+background:#000;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(56,189,248,.2); max-width: 1000px; margin: 0 auto;}
+.stage video{width:100%;height:100%;object-fit:cover}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.stat{background:var(--card);padding:38px 24px;text-align:center;transition:background .3s;backdrop-filter:blur(10px)}
+.stat:hover{background:rgba(56,189,248,0.1)}
+.stat b{display:block;font-size:clamp(32px,5vw,54px);font-weight:800;letter-spacing:-1.5px;
+color:var(--accent);margin-bottom:6px;text-shadow:0 0 15px rgba(56,189,248,0.4)}
+.stat span{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#e2e8f0;font-weight:600}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr;gap:50px;align-items:start}
+@media(min-width:1024px){.about-grid{grid-template-columns:1.3fr .7fr;gap:70px;}}
+
+.letter{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+padding:40px 34px;box-shadow:0 20px 60px rgba(0,0,0,.7);position:relative;backdrop-filter:blur(16px)}
+@media(min-width:1200px){.letter{padding: 60px 50px;}}
+@media(max-width:640px){.letter{padding:28px 22px}}
+
+/* --- COHESIVE & PREMIUM TYPOGRAPHY --- */
+.letter p { margin-bottom: 24px; line-height: 1.8; text-align: left; word-wrap: break-word; padding: 16px 20px; border-radius: 10px; background: rgba(255,255,255,0.03); border-left: 3px solid transparent; transition: background 0.3s, border-color 0.3s; font-size: 16px; }
+@media(min-width:1200px){.letter p { font-size: 17px; }}
+.letter p:hover { background: rgba(255,255,255,0.07); border-left-color: var(--accent); box-shadow: inset 0 0 20px rgba(56,189,248,0.05); }
+
+.p-date { font-family: 'Courier Prime', monospace; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #cbd5e1; border-left-color: #cbd5e1 !important; background: transparent !important; padding: 0 !important; }
+.p-salutation { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #ffffff; border-left-color: #ffffff !important; background: transparent !important; padding: 0 !important; }
+.p-intro { font-family: 'Inter', sans-serif; color: #f1f5f9; }
+.p-telemarketing { font-family: 'Merriweather', serif; color: #e2e8f0; font-style: italic; border-left-color: #818cf8; }
+.p-alarmforce { font-family: 'Courier Prime', monospace; color: #bae6fd; border-left-color: #38bdf8; }
+.p-ai { font-family: 'Space Grotesk', sans-serif; color: #ffffff; border-left-color: #7dd3fc; }
+.p-tech { font-family: 'Outfit', sans-serif; color: #e0f2fe; border-left-color: #0ea5e9; }
+.p-lang { font-family: 'Quicksand', sans-serif; color: #f8fafc; border-left-color: #94a3b8; }
+.p-closing { font-family: 'Playfair Display', serif; color: #ffffff; font-style: italic; border-left-color: #ffffff; background: transparent !important; padding: 0 !important; margin-top: 30px;}
+.p-sign { font-family: 'Caveat', cursive; font-size: 42px; color: #38bdf8; margin-top: 10px; line-height: 1.2; background: transparent !important; border: none !important; padding: 0 !important; text-shadow: 0 0 10px rgba(56,189,248,0.4);}
+
+/* PARAGRAPH VIDEOS */
+.para-video-wrap { margin: 20px 0 30px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #000; }
+.para-video-wrap video { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+
+.timeline-wrap{position:sticky; top:100px;}
+@media(max-width:1023px){.timeline-wrap{position:relative; top:0;}}
+.timeline{position:relative;padding-left:30px;margin-top:24px}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;
+background:linear-gradient(180deg,var(--accent),rgba(56,189,248,.05))}
+.tl-item{position:relative;padding-bottom:32px;transition:transform .3s}
+.tl-item:hover{transform:translateX(6px);}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;
+background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 10px rgba(56,189,248,.5);transition:all .3s}
+.tl-item:hover::before{background:var(--accent);box-shadow:0 0 15px rgba(56,189,248,.8)}
+.tl-year{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:800;margin-bottom:6px}
+.tl-role{font-weight:700;font-size:18px;margin-bottom:4px;color:#ffffff}
+.tl-co{font-size:14px;color:#cbd5e1;line-height:1.6}
+
+.skills{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.chip{font-size:14px;padding:10px 18px;border-radius:999px;background:var(--card);
+border:1px solid var(--line);color:#f1f5f9;transition:all .2s ease;font-weight:500;backdrop-filter:blur(8px)}
+.chip:hover{border-color:var(--accent);background:rgba(56,189,248,0.15);color:#ffffff;transform:translateY(-3px);box-shadow:0 5px 15px rgba(56,189,248,.3)}
+
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+padding:48px 44px;box-shadow:0 20px 60px rgba(0,0,0,.7);max-width:900px;margin:0 auto;backdrop-filter:blur(16px)}
+@media(max-width:640px){.form-card{padding:32px 24px}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid2 .span-2{grid-column:span 2}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.grid2 .span-2{grid-column:span 1}}
+label.field{display:block;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#cbd5e1;font-weight:700}
+label.field em{color:var(--accent);font-style:normal}
+label.field input,label.field textarea{display:block;width:100%;margin-top:8px;padding:16px; 
+background:rgba(5,8,15,0.6);color:#ffffff;border:1px solid var(--line);border-radius:12px;
+font-family:inherit;font-size:16px;transition:all .2s}
+label.field input::placeholder,label.field textarea::placeholder{color:#64748b}
+label.field input:focus,label.field textarea:focus{outline:none;border-color:var(--accent);
+background:rgba(5,8,15,0.9);box-shadow:0 0 0 4px rgba(56,189,248,.25)}
+label.field textarea{resize:vertical;min-height:140px}
+.consent{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#f1f5f9;margin:24px 0 6px}
+.consent input{margin-top:4px;accent-color:var(--accent);width:18px;height:18px}
+.privacy{font-size:13px;color:#94a3b8;margin-top:16px}
+
+footer{padding:60px 24px 50px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font-size:14px;background:rgba(5,8,15,0.9)}
+footer .socials{display:flex;gap:28px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+footer .socials a{transition:color .2s;font-weight:600}
+footer .socials a:hover{color:var(--accent); text-shadow:0 0 10px rgba(56,189,248,0.5)}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-media">
+  <video id="bg-video" autoplay muted loop playsinline preload="metadata">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="bg-overlay"></div>
+
+<button class="audio-toggle" id="audioToggle" aria-label="Unmute background video">
+  <svg id="audioIcon" viewBox="0 0 24 24">
+    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+  </svg>
+</button>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top"><i></i>AMIT PURI</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="badge"><span class="pulse"></span>Available for contract &amp; full-time</div>
+    <h1>AMIT PURI</h1>
+    <p class="role">AI Sales · Consultation · Client Services</p>
+    <p class="tagline" id="tagline" aria-live="polite"></p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#work">See the work →</a>
+      <a class="btn btn-ghost" href="#contact">Book a call</a>
+    </div>
+    
+    <div class="hero-contact scroll-anim anim-bottom" style="animation-delay: 0.2s;">
+      <a href="mailto:mitspete2020@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="tel:+16477170929">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call
+      </a>
+      <a href="https://linkedin.com/in/amit-puri-7a817820a" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/petemits" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://instagram.com/p._mits" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll<span></span></div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head scroll-anim anim-top" style="text-align:center; margin: 0 auto 48px;">
+      <div class="sec-kicker">Selected Work</div>
+      <h2 class="sec-title">Demos, in motion</h2>
+      <p class="sec-sub" style="margin: 0 auto;">A showcase of builds from the AI apprenticeship.</p>
+    </div>
+
+    <div class="stage scroll-anim anim-zoom">
+      <video id="stageVideo" autoplay muted loop playsinline controls preload="metadata">
+        <source src="demo1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stats scroll-anim anim-spin">
+      <div class="stat"><b>21</b><span>Years client-facing</span></div>
+      <div class="stat"><b>120%</b><span>Peak quota attainment</span></div>
+      <div class="stat"><b>4</b><span>Years AI apprenticeship</span></div>
+      <div class="stat"><b>3</b><span>Cloud platforms</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head scroll-anim anim-top">
+      <div class="sec-kicker">About</div>
+      <h2 class="sec-title">Sales instincts, engineer's toolkit</h2>
+      <p class="sec-sub">21 years in front of clients. Five years learning to build what they need.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="letter">
+        <p class="p-date scroll-anim anim-top" id="today"></p>
+        
+        <!-- TOP VIDEO -->
+        <div class="para-video-wrap scroll-anim anim-bottom">
+          <video controls muted playsinline><source src="para0.mp4" type="video/mp4"></video>
+        </div>
+
+        <p class="p-salutation scroll-anim anim-right">Dear Hiring Manager,</p>
+        
+        <!-- PARA 1 -->
+        <p class="p-intro scroll-anim anim-left">I am writing to express my interest in AI sales, consultation, and client services roles, applying my experience in AI data annotation, data auditing, and automation workflows, backed by 21 years in sales, account management, and customer service.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-zoom">
+          <video controls muted playsinline><source src="para1.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 2 -->
+        <p class="p-telemarketing scroll-anim anim-flip">I came to Canada from India at 16 and have worked full-time since. After completing Grade 12 in Ontario, I worked in outbound telemarketing from 2000 to 2004, handling long-distance calling for Sitel, American Express, Gemma, and other call-centre campaigns. I then joined Bell from 2004 to 2006, where I was promoted to senior customer service agent within a year, received a $10,000 raise, and won several customer service awards. After six years of full-time work, I left Bell to update my skills and earned a Business Administration diploma at CDI College from 2007 to 2008, where I developed a full business plan for prospective investors and financing—an experience that strengthened my ability to translate client needs into practical recommendations.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-zoom">
+          <video controls muted playsinline><source src="para2.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 3 -->
+        <p class="p-alarmforce scroll-anim anim-bottom">At AlarmForce from 2008 to 2011, I was consistently one of the top agents, a record verifiable through manager references and CRA documents. It was during this time that I founded iBiz Marketing, an automated political-campaign outreach service. In 2011, we supported NDP campaigns with phone-based voter connection, candidate-voice messaging, pamphlet distribution, and needs-capture workflows. The NDP won overall that year, and the candidate’s vote count rose from roughly 6,000 to 13,000–14,000, suggesting the outreach had a good impact. I later worked at Choice Hotels before moving into B2B account management at Cansel Inc., where I achieved 100–120% of a semi-quarter sales objective of roughly $500,000. At AEC PropertyTax, I met 100–120% of booking and sales targets through outbound cold calling. Across these roles, I kept accurate Salesforce CRM records and worked with minimal direction.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-spin">
+          <video controls muted playsinline><source src="para3.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 4 -->
+        <p class="p-ai scroll-anim anim-right">I recently completed the final two-month stage of a four-year AI apprenticeship combining software engineering and model evaluation. Challenges rotated: email automation one day, and permutation and combination work for financial software using pandas, NumPy, or Stable Diffusion the next. I analyze model behaviour, apply NLP frameworks such as 5 Ws analysis and output comparison, and perform evaluate-and-refine work, dataset auditing, and verification.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-swing">
+          <video controls muted playsinline><source src="para4.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 5 -->
+        <p class="p-tech scroll-anim anim-left">I work with Python, C++, Java, REST APIs, and React Hooks, with hands-on AWS, Google Cloud, and Oracle Cloud experience. I also built automated media pipelines for captioning, downloading, and cross-posting across YouTube, Facebook, Instagram, Threads, and TikTok. Projects were handed off to senior engineers to assess how well I grasped requirements. I understand that lead generation is critical and that media and online presence must be fully active.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-flip">
+          <video controls muted playsinline><source src="para5.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 6 -->
+        <p class="p-lang scroll-anim anim-zoom">As AI tools shifted toward GitHub repositories and subscription cloud platforms, I learned both sides—Python, PowerShell, and C—and can build chatbots or voice bots for a fraction of the cost, maneuverable at any time. I use iBiz in my business and in a friend’s business to automate social posts and newsletters. I can demonstrate working programs on my Termux phone or at github.com/petemits, and my YouTube, Instagram, LinkedIn, and GitHub channels share project stories.</p>
+
+        <div class="para-video-wrap scroll-anim anim-top">
+          <video controls muted playsinline><source src="para6.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 7 -->
+        <p class="p-intro scroll-anim anim-bottom">I am fluent in English and also speak Hindi and Punjabi. I understand the architecture of machinery, networks, and neural networks, and I am actively engaged in digital platforms. At 48, I have 18+ years ahead to grow in technology, IT, and cloud roles. I am comfortable in remote, hybrid, and on-site settings and am open to both contract and employee positions. Employment verification is available through T4 and CRA records.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-zoom">
+          <video controls muted playsinline><source src="para7.mp4" type="video/mp4"></video>
+        </div>
+
+        <!-- PARA 8 -->
+        <p class="p-intro scroll-anim anim-right">I am entrepreneurial by nature and still hold that ambition, but I am currently seeking a company where I can grow within a team. The IT industry moves fast, and keeping up requires continuous exploration, self-directed learning, and collaboration. To complete this digital world—robots and all—takes a great many minds, and I want to be part of that.</p>
+
+        <div class="para-video-wrap scroll-anim anim-spin">
+          <video controls muted playsinline><source src="para8.mp4" type="video/mp4"></video>
+        </div>
+        
+        <!-- PARA 9 -->
+        <p class="p-closing scroll-anim anim-left">I look forward to meeting with you and exploring further how I can build my career with your organization. I promise you a good return to fulfill the mission of your organization.</p>
+        
+        <div class="para-video-wrap scroll-anim anim-zoom">
+          <video controls muted playsinline><source src="para9.mp4" type="video/mp4"></video>
+        </div>
+
+        <p class="p-sign scroll-anim anim-spin">Sincerely,<br>Amit Puri</p>
+
+        <!-- VERY BOTTOM VIDEO (para10) -->
+        <div class="para-video-wrap scroll-anim anim-swing" style="margin-top: 30px;">
+          <video controls muted playsinline><source src="para10.mp4" type="video/mp4"></video>
+        </div>
+        
+      </div>
+
+      <div class="timeline-wrap scroll-anim anim-right" id="experience">
+        <h3 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#cbd5e1;margin-bottom:12px;font-weight:700">Experience</h3>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">2019 – 2026</div><div class="tl-role">AI Apprenticeship</div><div class="tl-co">Software engineering, model evaluation, data auditing</div></div>
+          <div class="tl-item"><div class="tl-year">2013 – 2019</div><div class="tl-role">B2B Account Manager</div><div class="tl-co">Cansel Inc. · AEC PropertyTax · Choice Hotels</div></div>
+          <div class="tl-item"><div class="tl-year">2008 – 2011</div><div class="tl-role">Top Agent &amp; Founder</div><div class="tl-co">AlarmForce · Founded iBiz Marketing</div></div>
+          <div class="tl-item"><div class="tl-year">2007 – 2008</div><div class="tl-role">Business Administration Diploma</div><div class="tl-co">CDI College</div></div>
+          <div class="tl-item"><div class="tl-year">2004 – 2006</div><div class="tl-role">Senior Customer Service Agent</div><div class="tl-co">Bell · promoted within a year, $10K raise, multiple awards</div></div>
+          <div class="tl-item"><div class="tl-year">2000 – 2004</div><div class="tl-role">Outbound Telemarketing</div><div class="tl-co">Sitel · American Express · Gemma</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head scroll-anim anim-top">
+      <div class="sec-kicker">Toolkit</div>
+      <h2 class="sec-title">What I bring</h2>
+    </div>
+    <div class="skills scroll-anim anim-bottom">
+      <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span>
+      <span class="chip">PowerShell</span><span class="chip">C</span>
+      <span class="chip">REST APIs</span><span class="chip">React Hooks</span>
+      <span class="chip">AWS</span><span class="chip">Google Cloud</span><span class="chip">Oracle Cloud</span>
+      <span class="chip">Data annotation</span><span class="chip">Data auditing</span>
+      <span class="chip">NLP evaluation</span><span class="chip">5 Ws analysis</span>
+      <span class="chip">Automation pipelines</span><span class="chip">Salesforce CRM</span>
+      <span class="chip">B2B sales</span><span class="chip">Cold calling</span>
+      <span class="chip">English · Hindi · Punjabi</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head scroll-anim anim-top" style="text-align:center;margin:0 auto 48px;">
+      <div class="sec-kicker">Contact</div>
+      <h2 class="sec-title">Let's talk</h2>
+      <p class="sec-sub" style="margin:0 auto;">Drop your details and you'll be able to book a call on the next screen.</p>
+    </div>
+
+    <div class="form-card scroll-anim anim-zoom">
+      <form action="https://formsubmit.co/mitspete2020@gmail.com" method="POST">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New cover-letter contact from your portfolio">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://petemits.github.io/resume/thanks.html">
+
+        <div class="grid2">
+          <label class="field">Full name <em>*</em><input type="text" name="name" required autocomplete="name"></label>
+          <label class="field">Occupation / title <em>*</em><input type="text" name="occupation" required></label>
+          <label class="field">Company <em>*</em><input type="text" name="company" required autocomplete="organization"></label>
+          <label class="field">Company website<input type="url" name="website" placeholder="https://"></label>
+          <label class="field">Email address <em>*</em><input type="email" name="email" required autocomplete="email"></label>
+          <label class="field">Preferred contact email<input type="email" name="preferred_email" placeholder="If different from above"></label>
+          <label class="field">Phone number<input type="tel" name="phone" autocomplete="tel" placeholder="+1 ___ ___ ____"></label>
+          <label class="field">Address<input type="text" name="address" autocomplete="street-address"></label>
+          <label class="field span-2">Message<textarea name="message" rows="4"></textarea></label>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>I agree to be contacted about this opportunity.</span>
+        </label>
+
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:18px">Send details &amp; book a call →</button>
+        <p class="privacy" style="text-align:center">Your details are used only to contact you about this opportunity and are not shared.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="socials">
+    <a href="mailto:mitspete2020@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/amit-puri-7a817820a" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/petemits" target="_blank" rel="noopener">GitHub</a>
+    <a href="tel:+16477170929">+1 647 717 0929</a>
+  </div>
+  <p>© <span id="yr"></span> Amit Puri · Mississauga, Ontario</p>
+</footer>
+
+<script>
+/* --- AUDIO TOGGLE LOGIC --- */
+var bgVideo = document.getElementById('bg-video');
+var stageVideo = document.getElementById('stageVideo');
+var audioToggle = document.getElementById('audioToggle');
+var audioIcon = document.getElementById('audioIcon');
+var isMuted = true;
+
+var iconMuted = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+var iconUnmuted = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+
+audioToggle.addEventListener('click', function() {
+  isMuted = !isMuted;
+  bgVideo.muted = isMuted;
+  if(stageVideo) stageVideo.muted = isMuted;
+  if (isMuted) {
+    audioIcon.innerHTML = iconMuted;
+    audioToggle.setAttribute('aria-label', 'Unmute videos');
+  } else {
+    audioIcon.innerHTML = iconUnmuted;
+    audioToggle.setAttribute('aria-label', 'Mute videos');
+  }
+});
+
+/* taglines */
+var T=[
+"Turning 21 years of client trust into AI-ready results.",
+"Where sales discipline meets model evaluation.",
+"From Bell to build pipelines — I deliver.",
+"Data-fluent. Client-obsessed. Ready to ship.",
+"I don't just learn systems — I make them run.",
+"21 years of results. Five years of AI. One hire away.",
+"Automation you can demo. Results you can verify.",
+"Sales instincts, engineer's toolkit.",
+"Multilingual. Multidisciplinary. Multitasking.",
+"Built for teams that ship."
+];
+var tEl=document.getElementById('tagline');
+function rot(){
+  tEl.classList.add('fade');
+  setTimeout(function(){
+    tEl.textContent=T[Math.floor(Math.random()*T.length)];
+    tEl.classList.remove('fade');
+  },320);
+}
+rot();setInterval(rot,7000);
+
+/* nav scroll */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){
+  nav.classList.toggle('scrolled',window.scrollY>40);
+},{passive:true});
+
+/* TWO-WAY SCROLL OBSERVER */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('is-visible');
+    } else {
+      e.target.classList.remove('is-visible');
+    }
+  });
+},{threshold: 0.1, rootMargin: "0px -50px -50px 0px"}); 
+
+document.querySelectorAll('.scroll-anim').forEach(function(el){io.observe(el)});
+
+/* date + year */
+document.getElementById('today').textContent=new Date()
+  .toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
